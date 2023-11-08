@@ -1,0 +1,27 @@
+kind: source
+spec:
+  name: "coinpaprika"
+  path: "coinpaprika/coinpaprika"
+  registry: cloudquery
+  version: "v1.0.1"
+  tables:
+    [ "*" ]
+  destinations:
+    - "sqlite"
+  spec:
+    api_debug: true
+    start_date: "2023-05-15T08:00:00Z" # for free plan up to 1 year ago
+    interval: 24h
+    rate_duration: 30d
+    rate_number: 25000
+    tickers:
+      ["btc-bitcoin"]
+---
+kind: destination
+spec:
+  name: sqlite
+  path: cloudquery/sqlite
+  registry: cloudquery
+  version: "v2.4.16"
+  spec:
+    connection_string: ./db.sql
